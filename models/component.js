@@ -6,7 +6,8 @@ var ComponentSchema = new Schema(
         title: {title: String, required: true, maxlength: 100},
         manufacturer: {type: Schema.Types.ObjectId, ref: 'Manufacturer', required: true},
         price: {type: Number, required: true},
-        quantity: {type: Number, required: true}
+        quantity: {type: Number, required: true},
+        category: {type: Schema.Types.ObjectId, ref: 'Category', required: true}
     }
 );
 
