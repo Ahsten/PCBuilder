@@ -113,11 +113,36 @@ function createCategories(cb) {
         cb);
 }
 
+function createManufacturers(cb){
+  async.series([
+    function(callback){
+      manufacturerCreate('Nvidia', false, callback);
+    },
 
+    function(callback){
+      manufacturerCreate('AMD', false, callback);
+    }
+  ], cb);
+}
+
+function createComponents(cb){
+  async.series([
+    function(callback){
+      componentCreate(
+        'EVGA GeForce RTX 3080 Ti 12 GB FTW3 ULTRA GAMING LE iCX3 Video Card',
+        manufacturers[0],
+        650.00,
+        12,
+        catergories[1], 
+        callback);
+    }
+  ])
+}
 
 async.series([
     createCategories,
-
+    createManufacturers,
+    createComponents
 ],
 // Optional callback
 function(err, results) {
