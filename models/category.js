@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 var CategorySchema = new Schema
 (
     {
-        title: {type: String, required: true, maxlength: 100},
-        description: {type: String, maxlength: 300}
+        title: {type: String, maxLength: 100},
+        description: {type: String, maxLength: 300},
     }
 );
 
@@ -13,7 +13,7 @@ var CategorySchema = new Schema
 CategorySchema
 .virtual('url')
 .get(function() {
-    return '/category/' + this.id;
+    return '/category/' + this._id;
 });
 
 module.exports = mongoose.model('Category', CategorySchema);

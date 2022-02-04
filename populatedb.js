@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-console.log('This script populates some test books, authors, genres and bookinstances to your database. Specified database as argument - e.g.: populatedb mongodb+srv://cooluser:coolpassword@cluster0.a9azn.mongodb.net/local_library?retryWrites=true');
+console.log('This script populates some test components, manufacturers, and categories');
 
 // Get arguments passed on command line
 var userArgs = process.argv.slice(2);
@@ -13,12 +13,10 @@ if (!userArgs[0].startsWith('mongodb')) {
 var async = require('async')
 var Category = require('./models/category')
 var Component = require('./models/component')
-var manufacturer = require('./models/manufacturer')
+var Manufacturer = require('./models/manufacturer')
 
 
 var mongoose = require('mongoose');
-const component = require('./component');
-const manufacturer = require('./manufacturer');
 var mongoDB = userArgs[0];
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
@@ -75,7 +73,7 @@ function manufacturerCreate(title, description, cb) {
   if (description != false) manufacturerdetail.description = description;
 
     
-  var manufacturer = new Book(manufacturerdetail);    
+  var manufacturer = new Manufacturer(manufacturerdetail);    
   manufacturer.save(function (err) {
     if (err) {
       cb(err, null)
@@ -136,7 +134,7 @@ function createComponents(cb){
         catergories[1], 
         callback);
     }
-  ])
+  ], cb);
 }
 
 async.series([
