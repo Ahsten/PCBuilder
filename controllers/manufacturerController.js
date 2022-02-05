@@ -1,5 +1,3 @@
-const req = require('express/lib/request');
-const res = require('express/lib/response');
 var Manufactuer = require('../models/manufacturer');
 
 //Display list of Manufacturers
